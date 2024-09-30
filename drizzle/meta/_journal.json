@@ -15,6 +15,13 @@
       "when": 1725976666642,
       "tag": "0001_violet_masque",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726036577423,
+      "tag": "0002_plain_warpath",
+      "breakpoints": true
     }
   ]
 }
