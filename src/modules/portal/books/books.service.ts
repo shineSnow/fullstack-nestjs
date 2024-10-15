@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
-import * as schema from '../db/schema';
+import * as schema from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 
 @Injectable()

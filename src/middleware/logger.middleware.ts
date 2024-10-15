@@ -1,9 +1,12 @@
 import { NestMiddleware } from '@nestjs/common';
+import { NextFunction } from 'express';
 
-export class LoggerMiddleware implements NestMiddleware {
-  use(req: any, res: any, next: (error?: Error | any) => void) {
-    console.log('Request...', req.url);
-    next();
-    console.log('Response...', res.forRoutes);
-  }
+export function LoggerMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  console.log('Request...', req.url);
+  next();
+  console.log('Response...');
 }

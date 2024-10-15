@@ -6,15 +6,13 @@ import {
 } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './cats/cats.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { DrizzlePGModule } from '@knaadh/nestjs-drizzle-pg';
 import { ConfigModule } from '@nestjs/config';
-import { BooksController } from './books/books.controller';
-import { BooksService } from './books/books.service';
-import { BooksModule } from './books/books.module';
-import { UsersModule } from './users/users.module';
 import * as schema from './db/schema';
+import { RouterModule } from '@nestjs/core';
+import { PortalModule } from './modules/portal/portal.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -27,17 +25,22 @@ import * as schema from './db/schema';
       },
       config: { schema: { ...schema } },
     }),
-    CatsModule,
-    BooksModule,
-    UsersModule,
+    RouterModule.register([
+      {
+        path: 'portal',
+        module: PortalModule,
+      },
+      {
+        path: 'admin',
+        module: AdminModule,
+      },
+    ]),
   ],
-  controllers: [AppController, BooksController],
-  providers: [AppService, BooksService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes({ path: 'cats', method: RequestMethod.GET });
+    consumer.apply(LoggerMiddleware);
   }
 }

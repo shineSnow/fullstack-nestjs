@@ -4,6 +4,8 @@ import { TransformInterceptor } from './interceptors/transform.interceptor';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { LoggerMiddleware } from './middleware/logger.middleware';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +18,8 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document, {
     jsonDocumentUrl: 'swagger/json',
   });
+  app.useGlobalPipes(new ValidationPipe());
+  app.use(LoggerMiddleware);
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(
     new LoggingInterceptor(),

@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsInt, IsString } from 'class-validator';
 
 export class CreateBookDto {
   @ApiProperty({
@@ -6,6 +7,7 @@ export class CreateBookDto {
     example: '阿里巴巴与四十大盗',
     required: true,
   })
+  @IsString()
   title: string;
 
   @ApiProperty({
@@ -13,6 +15,7 @@ export class CreateBookDto {
     example: '张三',
     required: true,
   })
+  @IsInt()
   author: string;
 
   @ApiProperty({
@@ -20,5 +23,6 @@ export class CreateBookDto {
     example: false,
     required: true,
   })
+  @IsBoolean()
   published: boolean;
 }
