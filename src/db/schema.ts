@@ -6,7 +6,7 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core';
 
-export const books = pgTable('books', {
+export const books = pgTable('test_books', {
   id: serial('id').primaryKey(),
   title: varchar('title', { length: 255 }).notNull(),
   author: varchar('author', { length: 255 }).notNull(),
@@ -15,7 +15,7 @@ export const books = pgTable('books', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
-export const users = pgTable('users', {
+export const users = pgTable('test_users', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull(),
