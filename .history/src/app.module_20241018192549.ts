@@ -12,7 +12,21 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    TestModule,
+    // RouterModule.register([
+    //   {
+    //     path: 'api',
+    //     children: [
+    //       {
+    //         path: 'portal',
+    //         module: PortalModule,
+    //       },
+    //       {
+    //         path: 'admin',
+    //         module: AdminModule,
+    //       },
+    //     ],
+    //   },
+    // ]),
     PortalModule,
     AdminModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env.local' }),
@@ -24,6 +38,7 @@ import { TestModule } from './test/test.module';
       },
       config: { schema: { ...schema } },
     }),
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

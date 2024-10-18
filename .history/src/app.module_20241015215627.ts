@@ -8,13 +8,24 @@ import * as schema from './db/schema';
 import { RouterModule } from '@nestjs/core';
 import { PortalModule } from './modules/portal/portal.module';
 import { AdminModule } from './modules/admin/admin.module';
-import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    TestModule,
-    PortalModule,
-    AdminModule,
+    // RouterModule.register([
+    //   {
+    //     path: 'api',
+    //     children: [
+    //       {
+    //         path: 'portal',
+    //         module: PortalModule,
+    //       },
+    //       {
+    //         path: 'admin',
+    //         module: AdminModule,
+    //       },
+    //     ],
+    //   },
+    // ]),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env.local' }),
     DrizzlePGModule.register({
       tag: 'DB_PROD',

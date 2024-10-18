@@ -9,7 +9,6 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('NestJS + Drizzle + PostgreSQL')
     .setDescription('The NestJS + Drizzle + PostgreSQL API description')
@@ -19,6 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document, {
     jsonDocumentUrl: 'swagger/json',
   });
+  app.setGlobalPrefix('api/');
   app.useGlobalPipes(new ValidationPipe());
   app.use(LoggerMiddleware);
   app.useGlobalFilters(new HttpExceptionFilter());

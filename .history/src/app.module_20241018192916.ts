@@ -12,9 +12,23 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    TestModule,
     PortalModule,
     AdminModule,
+    RouterModule.register([
+      {
+        path: 'api',
+        children: [
+          {
+            path: 'portal',
+            module: PortalModule,
+          },
+          {
+            path: 'admin',
+            module: AdminModule,
+          },
+        ],
+      },
+    ]),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env.local' }),
     DrizzlePGModule.register({
       tag: 'DB_PROD',
@@ -24,6 +38,7 @@ import { TestModule } from './test/test.module';
       },
       config: { schema: { ...schema } },
     }),
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

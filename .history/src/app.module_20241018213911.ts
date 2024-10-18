@@ -16,6 +16,7 @@ import { TestModule } from './test/test.module';
     PortalModule,
     AdminModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env.local' }),
+
     DrizzlePGModule.register({
       tag: 'DB_PROD',
       pg: {

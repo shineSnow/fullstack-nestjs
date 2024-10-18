@@ -6,6 +6,7 @@ import { UsersController } from './users/users.controller';
 import { BooksController } from './books/books.controller';
 import { CategoryController } from './category/category.controller';
 import { UsersService } from './users/users.service';
+import { Book } from './books/entities/book.entity';
 import { BooksService } from './books/books.service';
 import { CategoryService } from './category/category.service';
 
