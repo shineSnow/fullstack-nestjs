@@ -14,7 +14,4 @@ jobs:
             npm install
             npm run build
       - name: 打包并上传到服务器
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist
+        uses: 
