@@ -1,0 +1,13 @@
+name: 打包Nestjs后台接口
+on: push
+
+jobs:
+  npm-build:
+    name: npm - build 工作
+    runs-on: ubuntu-latest
+    steps:
+      - run: pwd
+      - run: npm --version
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npm run build

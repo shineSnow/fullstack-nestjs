@@ -6,9 +6,7 @@ jobs:
     name: npm - build 工作
     runs-on: ubuntu-latest
     steps:
-      - name: 读取仓库内容
+      - name: du
         uses: actions/checkout@v4
-      - name: 安装依赖
-        run: npm install
-      - name: 打包
-        run: npm run build
+      - run: npm install
+      - run: npm run build
