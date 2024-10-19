@@ -7,6 +7,6 @@ jobs:
     - run: pwd
     - run: ls
   job2:
-    runs-on: windows-latest
+    runs-on: window-latest
     steps:
     - run: node -V
