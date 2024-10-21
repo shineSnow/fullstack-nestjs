@@ -7,8 +7,6 @@ import { ConfigModule } from '@nestjs/config';
 import * as schema from './db/schema';
 import { RouterModule } from '@nestjs/core';
 import { BooksModule } from './web/books/books.module';
-import { UsersModule } from './web/users/users.module';
-import { Category } from './web/category/entities/category.entity';
 
 @Module({
   imports: [
@@ -29,8 +27,8 @@ import { Category } from './web/category/entities/category.entity';
                 module: UsersModule,
               },
               {
-                path: 'category',
-                module: Category,
+                path: 'categories',
+                module: CategoriesModule,
               },
             ],
           },

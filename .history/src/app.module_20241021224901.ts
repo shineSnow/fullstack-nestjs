@@ -6,9 +6,7 @@ import { DrizzlePGModule } from '@knaadh/nestjs-drizzle-pg';
 import { ConfigModule } from '@nestjs/config';
 import * as schema from './db/schema';
 import { RouterModule } from '@nestjs/core';
-import { BooksModule } from './web/books/books.module';
-import { UsersModule } from './web/users/users.module';
-import { Category } from './web/category/entities/category.entity';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -23,14 +21,6 @@ import { Category } from './web/category/entities/category.entity';
               {
                 path: 'books',
                 module: BooksModule,
-              },
-              {
-                path: 'users',
-                module: UsersModule,
-              },
-              {
-                path: 'category',
-                module: Category,
               },
             ],
           },

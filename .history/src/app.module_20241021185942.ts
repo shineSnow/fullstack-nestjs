@@ -6,33 +6,21 @@ import { DrizzlePGModule } from '@knaadh/nestjs-drizzle-pg';
 import { ConfigModule } from '@nestjs/config';
 import * as schema from './db/schema';
 import { RouterModule } from '@nestjs/core';
-import { BooksModule } from './web/books/books.module';
-import { UsersModule } from './web/users/users.module';
-import { Category } from './web/category/entities/category.entity';
+import { PortalModule } from './portal/portal.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { TestModule } from './test/test.module';
+import { BooksModule } from './portal/books/books.module';
 
 @Module({
   imports: [
-    BooksModule,
+    TestModule,
     RouterModule.register([
       {
         path: 'api',
         children: [
           {
-            path: 'web',
-            children: [
-              {
-                path: 'books',
-                module: BooksModule,
-              },
-              {
-                path: 'users',
-                module: UsersModule,
-              },
-              {
-                path: 'category',
-                module: Category,
-              },
-            ],
+            path: '',
+            module: TestModule,
           },
         ],
       },
