@@ -1,11 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import * as schema from '../../db/schema';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @Inject('DB_PROD') private drizzleClient: NodePgDatabase<typeof schema>,
+  ) {}
+  async create(createUserDto: CreateUserDto) {
+    const res = await this.drizzleClient
+      .insert(schema.users)
+      .values(createUserDto)
+      .returning({ id: schema.users.id })
+      .then((res) => res[0] ?? null);
+    return res;
   }
 
   findAll() {

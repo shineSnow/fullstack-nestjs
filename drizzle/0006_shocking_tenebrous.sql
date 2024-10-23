@@ -1,0 +1,1 @@
+ALTER TABLE "test_categories_books" ADD COLUMN "id" serial PRIMARY KEY NOT NULL;
