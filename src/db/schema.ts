@@ -33,13 +33,7 @@ export const categories = pgTable('test_categories', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
-export const categoriesBooks = pgTable(
-  'test_categories_books',
-  {
-    bookId: integer('book_id').references(() => books.id),
-    categoryId: integer('category_id').references(() => categories.id),
-  },
-  (table) => ({
-    pk: primaryKey({ columns: [table.bookId, table.categoryId] }),
-  }),
-);
+export const categoriesBooks = pgTable('test_categories_books', {
+  bookId: integer('book_id').references(() => books.id),
+  categoryId: integer('category_id').references(() => categories.id),
+});

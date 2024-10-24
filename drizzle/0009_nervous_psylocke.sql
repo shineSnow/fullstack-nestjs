@@ -1,2 +1,0 @@
-ALTER TABLE "test_categories_books" ADD CONSTRAINT "test_categories_books_book_id_category_id_pk" PRIMARY KEY("book_id","category_id");--> statement-breakpoint
-ALTER TABLE "test_categories_books" DROP COLUMN IF EXISTS "id";
