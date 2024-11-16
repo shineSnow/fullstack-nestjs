@@ -26,13 +26,33 @@ model User {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   title     String
-  published Boolean  @default(true)
-  author    User     @relation(fields: [authorId], references: [id])
+  content   String      @db.Text
+  published Boolean     @default(true)
+  author    User        @relation(fields: [authorId], references: [id])
   authorId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  tags      PostToTag[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
   @@map("sys_posts")
+}
+
+model Tag {
+  id    Int         @id @default(autoincrement())
+  name  String      @unique
+  posts PostToTag[]
+
+  @@map("sys_tags")
+}
+
+model PostToTag {
+  postId Int
+  tagId  Int
+  Post   Post @relation(fields: [postId], references: [id])
+  Tag    Tag  @relation(fields: [tagId], references: [id])
+
+  @@id([postId, tagId])
+  @@map("sys_post_to_tag")
 }
